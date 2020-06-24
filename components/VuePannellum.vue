@@ -17,8 +17,10 @@ import _debounce from 'lodash/debounce'
 export default {
   props: {
     debug: { type: Boolean, default: false },
-    src: { type: [String, Object], required: true },
+    src: { type: [String, Object], default: '' },
     preview: { type: String, default: '' },
+    default: { type: Object, default: () => {} },
+    scenes: { type: Object, default: () => {} },
     autoLoad: { type: Boolean, default: false },
     autoRotate: { type: [Number, Boolean], default: 0 },
     orientation: { type: Boolean, default: false },
@@ -27,10 +29,11 @@ export default {
     compass: { type: Boolean, default: false },
     hotSpots: { type: Array, default: () => [] },
     hfov: { type: Number, default: 100 },
-    minHfov: { type: Number, default: 30 },
-    maxHfov: { type: Number, default: 100 },
+    minHfov: { type: Number, default: 50 },
+    maxHfov: { type: Number, default: 120 },
     yaw: { type: Number, default: 0 },
     pitch: { type: Number, default: 0 },
+    hotSpotDebug: { type: Boolean, default: false },
   },
   data() {
     return {
@@ -43,10 +46,12 @@ export default {
     srcOption() {
       if (typeof this.src === 'string') {
         return {
+          type: 'equirectangular',
           panorama: this.src,
         }
       }
       return {
+        type: 'cubemap',
         cubeMap: [
           this.src.pz,
           this.src.px,
@@ -114,20 +119,26 @@ export default {
   methods: {
     load() {
       const options = {
-        type: typeof this.src === 'string' ? 'equirectangular' : 'cubemap',
         autoLoad: this.autoLoad,
         autoRotate: this.autoRotate ? -2 : 0,
         orientationOnByDefault: this.orientation,
         compass: this.compass,
-        hotSpots: this.hotSpots,
         preview: this.preview,
         hfov: this.hfov,
         yaw: this.yaw,
         pitch: this.pitch,
         minHfov: this.minHfov,
         maxHfov: this.maxHfov,
+        hotSpotDebug: this.hotSpotDebug,
       }
-      Object.assign(options, this.srcOption)
+      if (this.src) {
+        Object.assign(options, this.srcOption, { hotSpots: this.hotSpots })
+      } else if (this.scenes) {
+        Object.assign(options, {
+          default: this.default,
+          scenes: this.scenes,
+        })
+      }
       this.viewer = window.pannellum.viewer(this.$el, options)
       this.viewer.on('load', () => {
         this.$emit('load')
@@ -135,11 +146,11 @@ export default {
       this.viewer.on('error', (err) => {
         this.$emit('error', err)
       })
-      if (this.showZoom === false) {
+      if (!this.showZoom) {
         const el = this.$el.querySelector('.pnlm-zoom-controls')
         if (el) el.style.display = 'none'
       }
-      if (this.showFullscreen === false) {
+      if (!this.showFullscreen) {
         const el = this.$el.querySelector('.pnlm-fullscreen-toggle-button')
         if (el) el.style.display = 'none'
       }
