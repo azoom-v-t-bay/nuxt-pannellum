@@ -20,7 +20,6 @@
       auto-load
       show-fullscreen
       auto-rotate
-      compass
       style="width: 600px; height: 400px;"
     />
   </div>
