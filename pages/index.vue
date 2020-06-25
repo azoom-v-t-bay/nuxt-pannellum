@@ -1,37 +1,48 @@
 <template>
-  <div class="container">
-    <VuePannellum
-      src="https://pannellum.org/images/tocopilla.jpg"
-      preview="https://pannellum.org/images/tocopilla-preview.jpg"
-      :hot-spots="hotSpots"
-      show-fullscreen
-      auto-rotate
-      compass
-      :yaw="100"
-      style="width: 600px; height: 400px;"
-    />
-    <VuePannellum
-      :default="{
-        firstScene: 'circle',
-        author: 'Matthew Petroff',
-        sceneFadeDuration: 1000,
-      }"
-      :scenes="scenes"
-      auto-load
-      show-fullscreen
-      auto-rotate
-      style="width: 600px; height: 400px;"
-    />
-    <VPannellum
-      height="500"
-      width="700"
-      panorama="https://pannellum.org/images/alma.jpg"
-      auto-load
-      :auto-rotate="-2"
-      :auto-rotate-inactivity-delay="3000"
-      compass
-      style="z-index: 100;"
-    />
+  <div style="display: flex; justify-content: space-between; padding: 10px;">
+    <div style="width: 30%;">
+      <VuePannellum
+        src="https://pannellum.org/images/tocopilla.jpg"
+        preview="https://pannellum.org/images/tocopilla-preview.jpg"
+        :hot-spots="hotSpots"
+        show-fullscreen
+        auto-rotate
+        hot-spot-debug
+        compass
+        :yaw="100"
+        style="width: 100%; height: 400px;"
+        title="Using hot spots, auto-rotate"
+      />
+    </div>
+    <div style="width: 30%;">
+      <VuePannellum
+        :default="{
+          firstScene: 'circle',
+          author: 'Matthew Petroff',
+          sceneFadeDuration: 1000,
+        }"
+        :scenes="scenes"
+        auto-load
+        show-fullscreen
+        style="width: 100%; height: 400px;"
+        title="Using tours, auto-load"
+        class="panellum1"
+      />
+    </div>
+    <div style="width: 30%;">
+      <VPannellum
+        height="100%"
+        :width="500"
+        panorama="https://pannellum.org/images/lascar.jpg"
+        auto-load
+        :pitch="-10"
+        :yaw="135.4"
+        :hfov="100"
+        compass
+        style="z-index: 100;"
+        title="Using new components, auto rotate inactivity delay"
+      />
+    </div>
   </div>
 </template>
 

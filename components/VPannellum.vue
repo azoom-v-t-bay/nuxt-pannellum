@@ -39,7 +39,11 @@ export default {
   },
   computed: {
     styleRoot() {
-      return `height: ${this.height}px; width: ${this.width}px`
+      const width =
+        typeof this.width === 'string' ? this.width : this.width + 'px'
+      const height =
+        typeof this.height === 'string' ? this.height : this.height + 'px'
+      return `height: ${height}; width: ${width}`
     },
     optionsAttrs() {
       const options = {}
@@ -60,7 +64,7 @@ export default {
         options.panorama = this.panorama
       }
       if (this.cubeMap) {
-        options.type = 'cubeMap'
+        options.type = 'cubemap'
         options.cubeMap = this.cubeMap
       }
       if (this.multiRes) {

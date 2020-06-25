@@ -34,6 +34,7 @@ export default {
     yaw: { type: Number, default: 0 },
     pitch: { type: Number, default: 0 },
     hotSpotDebug: { type: Boolean, default: false },
+    title: { type: String, default: '' },
   },
   data() {
     return {
@@ -130,6 +131,7 @@ export default {
         minHfov: this.minHfov,
         maxHfov: this.maxHfov,
         hotSpotDebug: this.hotSpotDebug,
+        title: this.title,
       }
       if (this.src) {
         Object.assign(options, this.srcOption, { hotSpots: this.hotSpots })
