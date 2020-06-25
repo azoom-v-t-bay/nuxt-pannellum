@@ -139,17 +139,7 @@ export default {
           scenes: this.scenes,
         })
       }
-      this.viewer = window.pannellum.viewer(this.$el, {
-        type: 'cubemap',
-        cubeMap: [
-          'https://pannellum.org/images/wyman-park-playground-cubic/face0.jpg',
-          'https://pannellum.org/images/wyman-park-playground-cubic/face5.jpg',
-          'https://pannellum.org/images/wyman-park-playground-cubic/face2.jpg',
-          'https://pannellum.org/images/wyman-park-playground-cubic/face1.jpg',
-          'https://pannellum.org/images/wyman-park-playground-cubic/face4.jpg',
-          'https://pannellum.org/images/wyman-park-playground-cubic/face3.jpg',
-        ],
-      })
+      this.viewer = window.pannellum.viewer(this.$el, options)
       this.viewer.on('load', () => {
         this.$emit('load')
       })

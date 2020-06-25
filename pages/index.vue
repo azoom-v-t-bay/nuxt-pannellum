@@ -1,27 +1,27 @@
 <template>
   <div class="container">
-    <!--    <VuePannellum-->
-    <!--      src="https://pannellum.org/images/tocopilla.jpg"-->
-    <!--      preview="https://pannellum.org/images/tocopilla-preview.jpg"-->
-    <!--      :hot-spots="hotSpots"-->
-    <!--      show-fullscreen-->
-    <!--      auto-rotate-->
-    <!--      compass-->
-    <!--      :yaw="100"-->
-    <!--      style="width: 600px; height: 400px;"-->
-    <!--    />-->
-    <!--    <VuePannellum-->
-    <!--      :default="{-->
-    <!--        firstScene: 'circle',-->
-    <!--        author: 'Matthew Petroff',-->
-    <!--        sceneFadeDuration: 1000,-->
-    <!--      }"-->
-    <!--      :scenes="scenes"-->
-    <!--      auto-load-->
-    <!--      show-fullscreen-->
-    <!--      auto-rotate-->
-    <!--      style="width: 600px; height: 400px;"-->
-    <!--    />-->
+    <VuePannellum
+      src="https://pannellum.org/images/tocopilla.jpg"
+      preview="https://pannellum.org/images/tocopilla-preview.jpg"
+      :hot-spots="hotSpots"
+      show-fullscreen
+      auto-rotate
+      compass
+      :yaw="100"
+      style="width: 600px; height: 400px;"
+    />
+    <VuePannellum
+      :default="{
+        firstScene: 'circle',
+        author: 'Matthew Petroff',
+        sceneFadeDuration: 1000,
+      }"
+      :scenes="scenes"
+      auto-load
+      show-fullscreen
+      auto-rotate
+      style="width: 600px; height: 400px;"
+    />
     <VPannellum
       height="500"
       width="700"
