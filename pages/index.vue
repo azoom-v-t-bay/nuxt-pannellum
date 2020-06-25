@@ -1,30 +1,39 @@
 <template>
   <div class="container">
-    <VuePannellum
-      src="https://pannellum.org/images/tocopilla.jpg"
-      preview="https://pannellum.org/images/tocopilla-preview.jpg"
-      :hot-spots="hotSpots"
-      show-fullscreen
-      auto-rotate
-      compass
-      :yaw="100"
-      style="width: 600px; height: 400px;"
-    />
-    <VuePannellum
-      :default="{
-        firstScene: 'circle',
-        author: 'Matthew Petroff',
-        sceneFadeDuration: 1000,
-      }"
-      :scenes="scenes"
+    <!--    <VuePannellum-->
+    <!--      src="https://pannellum.org/images/tocopilla.jpg"-->
+    <!--      preview="https://pannellum.org/images/tocopilla-preview.jpg"-->
+    <!--      :hot-spots="hotSpots"-->
+    <!--      show-fullscreen-->
+    <!--      auto-rotate-->
+    <!--      compass-->
+    <!--      :yaw="100"-->
+    <!--      style="width: 600px; height: 400px;"-->
+    <!--    />-->
+    <!--    <VuePannellum-->
+    <!--      :default="{-->
+    <!--        firstScene: 'circle',-->
+    <!--        author: 'Matthew Petroff',-->
+    <!--        sceneFadeDuration: 1000,-->
+    <!--      }"-->
+    <!--      :scenes="scenes"-->
+    <!--      auto-load-->
+    <!--      show-fullscreen-->
+    <!--      auto-rotate-->
+    <!--      style="width: 600px; height: 400px;"-->
+    <!--    />-->
+    <VPannellum
+      height="500"
+      width="700"
+      panorama="https://pannellum.org/images/alma.jpg"
       auto-load
-      show-fullscreen
-      auto-rotate
-      style="width: 600px; height: 400px;"
+      :auto-rotate="-2"
+      :auto-rotate-inactivity-delay="3000"
+      compass
+      style="z-index: 100;"
     />
   </div>
 </template>
-<!--src="https://pannellum.org/images/tocopilla.jpg"-->
 
 <script>
 export default {
